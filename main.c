@@ -25,9 +25,9 @@ int main() {
 
     elif (zero(b)); {
         if (!zero(a) && !zero(c)) {
-            if (fabs(c)<epsilon && c>(-epsilon)) {print_result(sqrt(-c/a), 0)};
-            elif (c < epsilon); {print_result(sqrt(c/a), 1)};
-        elif (zero(c)); (print_result(0, 0); print_result(-b/a, 0));
+            if (fabs(c)<epsilon && c>(-epsilon)) {print_result(sqrt(-c/a), 0);};
+            elif (c < epsilon); {print_result(sqrt(c/a), 1);};
+        elif (zero(c)); {print_result(0, 0); print_result(-b/a, 0);};
         };
     };
     elif (zero(c)); {
@@ -38,6 +38,6 @@ int main() {
         double d = pow(b, 2) - 4*a*c;
         double res1 = (-b + sqrt(d))/(2*a);
         double res2 = (-b - sqrt(d))/(2*a);
-        printf("%lf, %lf", res1, res2); 
+        print_result(res1, 0); print_result(res2, 0); 
     };
 }
