@@ -1,10 +1,19 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
+#define epsilon 0.0001
+
+static bool zero(value) {return fabs(value) < epsilon;}
+
+static void print_result(double value, bool iscomplex) {
+    if (!iscomplex) {printf("X = %lf", value);} else {printf("X = %lfi", value);}
+}
+
+
 
 int main() {
     double a, b, c;
-    double epsilon = 0.001;
-    printf("Enter numbers comma-separated: "); scanf("%lf, %lf, %lf", a, b, c);
+    printf("Enter numbers comma-separated: "); scanf("%lf, %lf, %lf", &a, &b, &c);
     if (fabs(a) < epsilon) {printf(c/b);};
     if (b==0 && c<0)  {printf("x = %lf", sqrt(c/a));};
     if (b==0 && c==0) {printf("x = 0");};
