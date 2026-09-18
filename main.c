@@ -19,18 +19,18 @@ int main() {
     printf("Enter numbers comma-separated: "); scanf("%lf, %lf, %lf", &a, &b, &c);
     if (zero(a)) {
         if (!zero(b) && !zero(c)) {print_result(-c/b);};                         //bc
-        if (zero(c)) {print_result(0);};                                      //b
-        if (zero(b)) {printf("Impossible.");};                                //c
+        if (zero(c)) {print_result(0);};                                         //b
+        if (zero(b)) {printf("Impossible.");};                                   //c
     };
 
     if (zero(b)) {
         if (!zero(a) && !zero(c)) {
             if (fabs(c)<epsilon && c>(-epsilon)) {print_result(sqrt(-c/a));};    //ac
             if (c < epsilon) {print_cmplex(sqrt(c/a), 0);};
-        if (zero(c)) {print_result(0); print_result(-b/a);};                  //a
+        if (zero(c)) {print_result(0); print_result(-b/a);};                     //a
         };
     };
-    if (zero(c)) {print_result(0); print_result(-b/a);};                      //ab
+    if (zero(c)) {print_result(0); print_result(-b/a);};                         //ab
     if (!zero(a)&&!zero(b)&&!zero(c)) {
         double d = pow(b, 2) - 4*a*c;                                            //abc
         if (d < 0) {print_cmplex(-b/(2*a), sqrt(d)/(2*a)); print_cmplex(-b/(2*a), -sqrt(d)/(2*a));}
