@@ -6,7 +6,7 @@
 
 static bool zero(double value) {return fabs(value) < epsilon;}
 
-void print_result(double value) {printf("x = %lf\n", value);}
+void print_result(double value) {printf("X = %lf\n", value);}
 
 void print_cmplex(double real, double imag) {
     if (!zero(real) && !zero(imag))
@@ -17,7 +17,8 @@ void print_cmplex(double real, double imag) {
         {printf("X = %lfi\n", imag);};
 }
 
-void main() {
+void main()
+{
     double a, b, c;
     printf("Enter numbers comma-separated: "); scanf("%lf, %lf, %lf", &a, &b, &c);
 
@@ -42,7 +43,7 @@ void main() {
     else if (zero(b)) {
         if (!zero(a) && !zero(c)) {
             if (c < -epsilon) {print_result(sqrt(-c/a));}
-            else {print_cmplex(sqrt(c/a), 0);};}
+            else {print_cmplex(0, sqrt(c/a));};}
         else if (zero(c))
             {print_result(0); print_result(-b/a);} 
     }
