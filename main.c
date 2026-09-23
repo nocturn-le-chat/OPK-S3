@@ -50,7 +50,3 @@ void main()
 
     else {print_result(0); print_result(-b/a);}
 }
-        if (zero(d)) {print_result(-b/(2*a));};
-        if (d > 0) {print_result((sqrt(d)-b)/(2*a)); print_result((-sqrt(b)-b)/(2*a));}
-    };
-}
