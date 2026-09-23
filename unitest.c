@@ -1,4 +1,5 @@
 #include <assert.h>
-#include <main.h>
+#include <sq_eq.h>
 
-void main(){}
+
+void run_test(){}
