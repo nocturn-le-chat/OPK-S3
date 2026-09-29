@@ -28,7 +28,7 @@ int main()
     for (int number = 0; number<=999999; number++)
     {
         int ticket[6] = {0, 0, 0, 0, 0, 0};
-        separator(number, &ticket);
+        separator(number, ticket);
         if (islucky(ticket)) {counter += 1;}
     }
     printf("%d\n", counter);
