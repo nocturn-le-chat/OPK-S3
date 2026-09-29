@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 
-void separate(int number, int* array) {
+void separator(int number, int* array) {
     int result[6];
     for (int i = 5; i >= 0; i--) {
         int denom = pow(10, i);
@@ -28,7 +28,7 @@ int main()
     for (int number = 1; number<=999999; number++)
     {
         int ticket[6] = {0, 0, 0, 0, 0, 0};
-        separate(number, &ticket);
+        separator(number, &ticket);
         if (islucky(ticket)) {counter += 1;}
     }
     printf("%d\n", counter);
