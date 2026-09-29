@@ -25,7 +25,7 @@ bool islucky(int ticket[6]) {return sum(ticket, 0, 2)==sum(ticket, 3, 5);}
 int main()
 {
     int counter = 0;
-    for (int number = 1; number<=999999; number++)
+    for (int number = 0; number<=999999; number++)
     {
         int ticket[6] = {0, 0, 0, 0, 0, 0};
         separator(number, &ticket);
