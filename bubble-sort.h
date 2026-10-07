@@ -5,4 +5,4 @@
 
 void swap(int* a, int* b) {};
 bool comparator(int* a, int* b) {};
-void bubble_sort(int* array, int num) {};
+int* bubble_sort(int* array, int num) {};
