@@ -18,8 +18,8 @@ void main()
         array = malloc(num * sizeof *array);
         for (int i = 0; i<num; i++) {scanf("%d,", &array[i]);};
     
-        if (num = 1) {bubble_sort(array, num);}
-        else {printf("Here's your sorted array: {%d}. Now satisfied?", array[0]);};
+        if (num = 1) {printf("Here's your sorted array: {%d}. Now satisfied?", array[0]);}
+        else {bubble_sort(array, num);};
 
         for (int i = 0; i<num; i++) {printf("%d,", array[i]);};
         

@@ -5,7 +5,7 @@
 
 void swap(int* a, int* b) {int temp = *a; *a = *b; *b = temp;}
 
-bool comparator(int* a, int* b) {return *a > *b;}
+bool comparator(int* a, int* b) {return *b < *a;}
 
 int* bubble_sort(int* array, int num)
 {
