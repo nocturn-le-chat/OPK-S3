@@ -1,5 +1,5 @@
-#include <unitest.h>
-#include <bubble-sort.h>
+#include "unitest.h"
+#include "bubble-sort.h"
 
 
 void main()
@@ -13,14 +13,16 @@ void main()
     
     int num; int *array;
     scanf("%d:", &num);
-    if (num == 0) {return 1;}
-    else {array = malloc(num * sizeof *array);}
+    if (num == 0) {printf("Here's your sorted array: { }. Satisfied?");}
+    else {
+        array = malloc(num * sizeof *array);
+        for (int i = 0; i<num; i++) {scanf("%d,", &array[i]);};
+    
+        if (num = 1) {bubble_sort(array, num);}
+        else {printf("Here's your sorted array: {%d}. Now satisfied?", array[0]);};
 
-    for (int i = 0; i<num; i++) {scanf("%d,", &array[i]);};
-
-    bubble_sort(array, num);
-
-    for (int i = 0; i<num; i++) {printf("%d,", array[i]);};
-
-    free(array);
+        for (int i = 0; i<num; i++) {printf("%d,", array[i]);};
+        
+        free(array);
+    };
 }
