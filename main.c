@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
-void swap(int* a, int* b) {int temp = *a; *a = *b; *b = *a;}
+void swap(int* a, int* b) {int temp = *a; *a = *b; *b = temp;}
 
 bool comparator(int* a, int* b) {return *a > *b;}
 
@@ -10,18 +11,18 @@ void main()
     printf("\nEnter your sequence\n");
     printf("{number}: {values comma-separated} >>> ");
     
-    int num; scanf("%zu:", &num); int *array = malloc(num * sizeof *array);
-
-    for (int i = 0; i<=num; i++) {
-        scanf("%d,", array[i]);
-    };
+    int num; scanf("%d:", &num); int *array = malloc(num * sizeof *array);
 
     for (int i = 0; i<num; i++) {
-        if (comparator(&array[i], &array[i+1])) {swap(&array[i], array[i+1]);}
+        scanf("%d,", &array[i]);
     };
 
-    printf("");
-    for (int i = 0; i<=num; i++) {
-        printf(array[i]);
+    for (int i = 0; i<num-1; i++) {
+        if (comparator(&array[i], &array[i+1])) {swap(&array[i], &array[i+1]);}
+    };
+
+    printf(" ");
+    for (int i = 0; i<num; i++) {
+        printf("%d ", array[i]);
     }
 }
