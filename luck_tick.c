@@ -31,6 +31,6 @@ int main()
         separator(number, ticket);
         if (islucky(ticket)) {counter += 1;}
     }
-    printf("%d\n", counter);
-    return counter;
+    printf("Total lucky tickets: %d\n", counter);
+    printf("Percentage: %d%%\n", counter/10000);
 }
