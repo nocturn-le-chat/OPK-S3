@@ -4,7 +4,6 @@
 
 
 void separator(int number, int* array) {
-    int result[6];
     for (int i = 5; i >= 0; i--) {
         int denom = pow(10, i);
         array[5-i] = number / denom;
