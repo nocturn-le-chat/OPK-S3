@@ -1,35 +1,22 @@
 #include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
 
-
-void separator(int number, int* array) {
-    for (int i = 5; i >= 0; i--) {
-        int denom = pow(10, i);
-        array[5-i] = number / denom;
-        number %= denom;
-    }
-}
-
-int sum(int massive[], int start, int end) {
-    int result = 0;
-    for (int index=start; index<=end; index++) {
-        result += massive[index];
-    }
-    return result;
-}
-
-bool islucky(int ticket[6]) {return sum(ticket, 0, 2)==sum(ticket, 3, 5);}
-
-int main()
+void main() 
 {
+    int sums[14] = {};
+    for (int first=0; first<10; first++) {
+        for (int second=0; second<10; second++) {
+            for (int last=0; last<10; last++) {
+                int sum = first + second + last;
+                if (sum<=14) {sums[sum] += 1;}
+            }
+        }
+    };
     int counter = 0;
-    for (int number = 0; number<=999999; number++)
-    {
-        int ticket[6] = {0, 0, 0, 0, 0, 0};
-        separator(number, ticket);
-        if (islucky(ticket)) {counter += 1;}
-    }
-    printf("Total lucky tickets: %d\n", counter);
-    printf("Percentage: %d%%\n", counter/10000);
+    for (int key=0; key<13; key++) {
+        counter += sums[key]*sums[key];
+    };
+    counter += sums[13]*sums[13];
+    counter = 2*counter;
+    printf("Total lucky tickets: %d; ", counter);
+    printf("percentage: %d%%\n", counter/10000);
 }
