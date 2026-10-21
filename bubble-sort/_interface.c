@@ -13,16 +13,14 @@ void main()
     
     int num; int *array;
     scanf("%d:", &num);
-    if (num == 0) {printf("Here's your sorted array: { }. Satisfied?");}
+    if (num == 0) {printf(" ");}
     else {
         array = malloc(num * sizeof *array);
         for (int i = 0; i<num; i++) {scanf("%d,", &array[i]);};
-    
-        if (num = 1) {printf("Here's your sorted array: {%d}. Now satisfied?", array[0]);}
-        else {bubble_sort(array, num);};
+        bubble_sort(array, num);
 
-        for (int i = 0; i<num; i++) {printf("%d,", array[i]);};
-        
+        for (int i = 0; i<num; i++) {printf("%d ", array[i]);};
+        printf("\n");
         free(array);
     };
 }
