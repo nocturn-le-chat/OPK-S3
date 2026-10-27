@@ -14,15 +14,15 @@ void swap(void* a, void* b, size_t el_size) {
     }    
 }
 
-bool comparator(void* first, void* second, char* type) {
-    if (type=="int"||type=="char") {
+bool comparator(void* first, void* second, char type) {
+    if (type=="i"||type=="c") {
         return (int*)first > (int*)second;};
-    if (type = "double") {
+    if (type=="d") {
         return (double*)first > (double*)second;}
 }
 
 
-void* bubble_sort(void* array, int len, char* type)
+void* bubble_sort(void* array, int len, char type)
 {   
     if (len < 2) {return array;};
 
