@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include <stddef.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
+#include <math.h>
 
 
 void swap(void* a, void* b, size_t el_size) {
@@ -14,25 +14,31 @@ void swap(void* a, void* b, size_t el_size) {
     }    
 }
 
-//bool comparator(int* a, int* b) {return *b < *a;}
+bool comparator(void* first, void* second, char* type) {
+    if (type=="int"||type=="char") {
+        return (int*)first > (int*)second;};
+    if (type = "double") {
+        return (double*)first > (double*)second;}
+}
 
-void* bubble_sort(void* array, int len, size_t el_size)
+
+void* bubble_sort(void* array, int len, char* type)
 {   
     if (len < 2) {return array;};
 
     while (true) {
         bool repeat = false;
         for (int i = 0; i<len-1; i++) {
-            unsigned char* first = (unsigned char *)array + i*el_size;
-            unsigned char* second = (unsigned char *)array + (i+1)*el_size;
+            void* first = &array[i];
+            void* second = &array[i+1];
 
-            if (memcmp(first, second, el_size)!=0) {
+            if (comparator(first, second, type)) {
                 repeat = true;
-                swap(first, second, el_size);
+                swap(first, second, sizeof* array);
             };
-        };
-        if (repeat == false) {break;};
-    }
 
+        if (repeat==false) {break;}
+        }
     return array;
+    }
 }
