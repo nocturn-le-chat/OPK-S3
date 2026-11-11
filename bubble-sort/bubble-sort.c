@@ -12,6 +12,7 @@ void swap(unsigned char* a, unsigned char* b, size_t size) {
 
 void* bubble_sort(void* array, int arr_len, size_t size, bool (*comparator)(int*, int*))
 {   
+    if (arr_len<2) {return array;}
     while(true) {
         bool repeat = false;
         for (int i=0; i<arr_len-1; i++) {

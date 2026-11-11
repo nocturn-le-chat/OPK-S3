@@ -35,30 +35,38 @@ void stand_test() {
 };
 
 void longe_test() {
-    int  lin_mass[] = {5, 2, 5, 4, 8, 7, 0, 1, 4, 2, 6, 3, 4, 2, 7, 6, 5};
+    int lin_mass[1000];
+    for (int i = 0; i<1000; i++) {lin_mass[i] = rand();}
 
-    bubble_sort(lin_mass, 17, sizeof*lin_mass, int_comp);
-    assert(checkout(lin_mass, 17, sizeof*lin_mass, int_comp)==0);
+    bubble_sort(lin_mass, 1000, sizeof*lin_mass, int_comp);
+    assert(checkout(lin_mass, 1000, sizeof*lin_mass, int_comp)==0);
 };
 
 void extra_test() {
     int xin_mass[] = {-1, 0, 1, -111222, 19812312, 2, 54};
+    int oin_mass[] = {1};
+    int nin_mass[] = {};
+
     
     bubble_sort(xin_mass, 7, sizeof*xin_mass, int_comp);
     assert(checkout(xin_mass, 7, sizeof*xin_mass, int_comp)==0);
+
+    assert(bubble_sort(nin_mass, 0, sizeof(int), int_comp)==nin_mass);
+    assert(bubble_sort(oin_mass, 1, sizeof*oin_mass, int_comp)==oin_mass);
 };
 
 void duple_test() {
     int  din_mass[] = {2, 1, 1, 3, 1, 1, 1};
 
     bubble_sort(din_mass, 7, sizeof*din_mass, int_comp);
-    assert(checkout(din_mass, 17, sizeof*din_mass, int_comp)==0);
+    assert(checkout(din_mass, 7, sizeof*din_mass, int_comp)==0);
 };
 
-void main() {
+int main() {
     stand_test();
     longe_test();
 
     extra_test();
     duple_test();
+    return 0;
 };
