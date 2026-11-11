@@ -1,76 +1,63 @@
 #include <stdio.h>
 #include "bubble-sort.h"
 #include <stdlib.h>
+#include <assert.h>
 
-int checkout(void* array, int len, int type) {
+int checkout(unsigned char* array, int arr_len, char type) {
+    int result = 0;
     size_t size;
-    if (type==1||type==4) {size = sizeof(int);};
-    if (type==2) {size = sizeof(float);};
-    if (type==3) {size = sizeof(double);};
-    size = (int)size;
+    if(type=='i') {size = sizeof(int);};
+    if(type=='f') {size = sizeof(float);};
+    if(type=='d') {size = sizeof(double);};
+    if(type=='c') {size = sizeof(char);};
 
-    int result = 0;
-    for (int i = 0; i<len; i++) {
-        if (comparator(&array[size*i], &array[size*(i+1)], type)) {result = 1;}
+    for (int i=0; i<arr_len-1; i++) {
+        unsigned char* first = &array[(int)size*i];
+        unsigned char* second = &array[(int)size*(i+1)];
+        if (comparator(first, second, type)) {result=1;
+        }
     }
+    return result;
+}
+
+void stand_test() {
+    int    in_mass[] = {8, 8, 2, 7, 3, 3, 1};
+    float  fl_mass[] = {1.9, 213.4, 0.1, 53.4, 12.6, 65.1, 41.2};
+    double db_mass[] = {312.422, 23.71, 621.666, 815.42, 0.01, 4371.64, 3147.352};
+    char   ch_mass[] = "HelloWo";
+
+    bubble_sort(in_mass, 7, 'i'); assert(checkout(in_mass , 7, 'i')==0);
+    bubble_sort(fl_mass, 7, 'f'); assert(checkout(fl_mass , 7, 'i')==0);
+    bubble_sort(db_mass, 7, 'd'); assert(checkout(db_mass , 7, 'i')==0);
+    bubble_sort(ch_mass, 7, 'c'); assert(checkout(ch_mass , 7, 'i')==0);
 };
 
+void longe_test() {
+    int  lin_mass[] = {5, 2, 5, 4, 8, 7, 0, 1, 4, 2, 6, 3, 4, 2, 7, 6, 5};
+    char lch_mass[] = "InTheAgeOfSuperBoredomHypeAndMediocrity";
 
-int stand_test() {
-    int result = 0;
-    int int_array[] = {1, 3, 3, 7, 2, 2, 8};
-    float fl_array[] = {1.0, 2.2, 6345.3, 13.0};
-    double db_array[] = {0.01, 1337.228, 13.123, 41123.3};
-    char ch_array[] = "NcTrNsLeEt";
-
-    bubble_sort(int_array, 7, 1); if(checkout(int_array, 7, 1)==1) {result = 1;};
-    bubble_sort(fl_array, 4, 2); if(checkout(fl_array, 4, 2)==1) {result = 2;};
-    bubble_sort(db_array, 4, 3); if(checkout(db_array, 4, 3)==1) {result = 3;};
-    bubble_sort(ch_array, 11, 4); if(checkout(fl_array, 11, 4)==1) {result = 4;};
-
-    return result;
+    bubble_sort(lin_mass, 17, 'i'); assert(checkout(lin_mass , 17, 'i')==0);
+    bubble_sort(lch_mass, 39, 'c'); assert(checkout(lch_mass , 39, 'c')==0);
 };
 
-int longe_test() {
-    int result = 0;
-    int lint_array[] = {5, 1, 2, 3, 5, 1, 2, 3, 7, 3, 4, 8, 1, 5, 3, 4, 2, 6, 4, 8, 6, 7, 5, 4, 3, 2};
-    char lch_array[] = "InTheAgeOfSuperBoredomHypeAndMediocrityCelebrateRelentlessnessMenaceToSociety";
-
-    bubble_sort(lint_array, sizeof(lint_array)/sizeof*lint_array, 1);
-    if(checkout(lint_array,  sizeof(lint_array)/sizeof*lint_array, 1)==1) {result = 5;};
-    bubble_sort(lch_array, sizeof(lch_array)/sizeof*lch_array, 4);
-    if(checkout(lch_array, sizeof(lch_array)/sizeof*lch_array, 4)==1) {result = 6;};
-
-    return result;
+void extra_test() {
+    int xin_mass = {-1, 0, 1, -111222, 19812312, 2, 54};
+    
+    bubble_sort(xin_mass, 7, 'i'); assert(checkout(xin_mass , 7, 'i')==0);
 };
 
-int extra_test() {
-    int result = 0;
-    int xint_array[] = {100, 0, -100, -2328737, 248719823981232, 0};
+void duple_test() {
+    int  din_mass[] = {2, 1, 1, 3, 1, 1, 1};
+    char dch_mass[] = "yaaazaaaa";
 
-    bubble_sort(xint_array, 6, 1);
-    if(checkout(xint_array, 6, 1)==1) {result = 7;};
-
-    return result;
-};
-
-int duple_test() {
-    int result = 0;
-    int dint_array[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-
-    bubble_sort(dint_array, 10, 1);
-    if(checkout(dint_array, 10, 1)==1) {result = 8;};
-
-    return result;
+    bubble_sort(din_mass, 7, 'i'); assert(checkout(din_mass , 7, 'i')==0);
+    bubble_sort(dch_mass, 7, 'c'); assert(checkout(dch_mass , 7, 'c')==0);
 };
 
 void main() {
-    int issues[4];
+    stand_test();
+    longe_test();
 
-    int std = stand_test(); if(std!=0) {issues[0]=std;};
-    int lon = longe_test(); if(lon!=0) {issues[1]=lon;};
-    int ext = extra_test(); if(ext!=0) {issues[2]=ext;};
-    int dup = duple_test(); if(dup!=0) {issues[3]=dup;};
-
-    printf("Tests ended with exit code %d", min(issues));
-}
+    extra_test();
+    duple_test();
+};
