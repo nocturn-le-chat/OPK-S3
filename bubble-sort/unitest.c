@@ -16,7 +16,7 @@ int checkout(void* array, int len, int type) {
 };
 
 
-char stand_test() {
+int stand_test() {
     int result = 0;
     int int_array[] = {1, 3, 3, 7, 2, 2, 8};
     float fl_array[] = {1.0, 2.2, 6345.3, 13.0};
