@@ -3,54 +3,56 @@
 #include <math.h>
 
 
-void swap(void* a, void* b, size_t size) {
-    unsigned char* first = a;
-    unsigned char* second = b;
+void swap(unsigned char* a, unsigned char* b, size_t size) {
     for (size_t i = 0; i < size; i++) {
-        unsigned char temp = first[i];
-        first[i] = second[i];
-        second[i] = temp;
+        unsigned char temp = a[i];
+        a[i] = b[i];
+        b[i] = temp;
     }    
 }
 
-bool comparator(void* first, void* second, int type) {
-    if (type==1||type==4) {
+bool comparator(unsigned char* first, unsigned char* second, char type) {
+    if (type=='i'||type=='c') {
         int a = *(int*)first;
         int b = *(int*)second;
         return a > b;
     };
-    if (type==2) {
+    if (type=='2') {
         float a = *(float*)first;
         float b = *(float*)second;
         return a > b;
     };
-    if (type==3) {
+    if (type=='3') {
         double a = *(double*)first;
         double b = *(double*)second;
+        return a > b;
+    };
+    if (type=='c') {
+        char a = *(char*)first;
+        char b = *(char*)second;
         return a > b;
     };
 }
 
 
-void* bubble_sort(void* array, int len, int type)
+void* bubble_sort(unsigned char* array, int arr_len, char type)
 {   
-    if (len < 2) {return array;};
     size_t size;
-    if (type==1||type==4) {size = sizeof(int);};
-    if (type==2) {size = sizeof(float);};
-    if (type==3) {size = sizeof(double);};
-    size = (int)size;
+    if(type=='i') {size = sizeof(int);};
+    if(type=='f') {size = sizeof(float);};
+    if(type=='d') {size = sizeof(double);};
+    if(type=='c') {size = sizeof(char);};
 
-    while (true) {
+    while(true) {
         bool repeat = false;
-         for (int i = 0; i<len-1; i++) {
-            if (comparator(&(array[size*i]), &(array[size*(i+1)]), type)) {
+        for (int i=0; i<arr_len-1; i++) {
+            unsigned char* first = &array[(int)size*i];
+            unsigned char* second = &array[(int)size*(i+1)];
+            if (comparator(first, second, type)) {
                 repeat = true;
-                swap(&array[size*i], &array[size*(i+1)], size);
-            };
-
-        if (repeat==false) {break;}
+                swap(first, second, size);
+            }
         }
-    return array;
+        if(!repeat) {break;}
     }
 }
