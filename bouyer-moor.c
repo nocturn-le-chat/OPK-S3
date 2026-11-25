@@ -1,5 +1,13 @@
-#include <stdlib.h>
+#include <stdbool.h>
 
+
+bool compare(char* prefix, char* suffix, int len) {
+    bool flag = true;
+    for (int index= len-1; index>=0; index--) {
+        if (prefix[index] != suffix[index]) {flag = false;}
+    }
+    return flag;
+}
 
 int search(char symbol, char* string) {
     for (int index= sizeof(string)/sizeof(char)-1; index>=0; index--) {
@@ -16,7 +24,10 @@ int bouyer_moor(char* needle, char* haystack)
     table[need_len] = 1;
     // Первый проход по шаблону //
     for (int index = need_len-2; index>=0; index--) {
-        //search();
+        if (compare(&needle[need_len-1-index], &needle[need_len-1], need_len-index)) {
+            table[index] = need_len - index;
+        }
+        else {table[index] = 0;}
     }
     // Второй проход по шаблону //
     for (int index = need_len-2; index>=0; index--) {
