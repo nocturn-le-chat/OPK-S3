@@ -11,22 +11,31 @@ void swap(unsigned char* first, unsigned char* second, size_t size) {
 }
 
 void sift_down(void* array, int index, int len, size_t size, bool (*comparator)(void*, void*)) {
-    while (len>1&&(2*index+1<=len-1)) {
+    while (len>1) {
         unsigned char* parent =  (array + (int)size*index);
-        unsigned char* f_child = (array + (int)size*(2*index+1));
-        unsigned char* s_child;
-        if (2*index+2<=len-1) {s_child = (array + (int)size*(2*index+2));}
-        else {s_child= NULL;}
-
-        if (comparator(f_child, parent)&&(s_child==NULL||comparator(f_child, s_child))) {
-            swap(parent, f_child, size);
-            index = index+2*index+1;
+        if (2*index+2<len) {
+            unsigned char* f_child =  (array + (int)size*(2*index+1));
+            unsigned char* s_child =  (array + (int)size*(2*index+2));
+            bool is_max = comparator(f_child, s_child)||f_child==s_child;
+            if (comparator(f_child, parent)&&is_max) {
+                swap(parent, f_child, size);
+                index += 2*index+1;
+            }
+            else if (comparator(s_child, parent)&&!is_max) {
+                swap(parent, s_child, size);
+                index += 2*index+2;
+            }
+            else {break;}
         }
-        else if (s_child!=NULL&&comparator(s_child, parent)) {
-            swap(parent, s_child, size);
-            index = index+2*index+2;
+        else if (2*index+1<len) {
+            unsigned char* f_child =  (array + (int)size*(2*index+1));
+            if (comparator(f_child, parent)) {
+                swap(parent, f_child, size);
+                index += 2*index+1;
+            }
+            else{break;}
         }
-        else {break;};
+        else{break;}
     }
 }
 
