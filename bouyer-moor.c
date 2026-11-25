@@ -1,8 +1,6 @@
 #include <stdlib.h>
 
 
-typedef struct {int error_index, shift_index;} shiftable;
-
 int search(char symbol, char* string) {
     for (int index= sizeof(string)/sizeof(char)-1; index>=0; index--) {
         if (string[index]==symbol) {return index;}
@@ -14,9 +12,8 @@ int bouyer_moor(char* needle, char* haystack)
 {
     // Составление таблицы сдвигов //
     int need_len = sizeof(needle)/sizeof(char);
-    shiftable table[need_len];
-    table[need_len].error_index = need_len-1;
-    table[need_len].shift_index = 1;
+    int table[need_len];
+    table[need_len] = 1;
     // Первый проход по шаблону //
     for (int index = need_len-2; index>=0; index--) {
         //search();
