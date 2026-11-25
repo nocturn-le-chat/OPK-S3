@@ -3,12 +3,6 @@
 
 typedef struct {int error_index, shift_index;} shiftable;
 
-//  Составление таблицы сдвигов
-shiftable create_table(char* template) {
-    shiftable table[sizeof(template)/sizeof(char)];
-
-}
-
 int search(char symbol, char* string) {
     for (int index= sizeof(string)/sizeof(char)-1; index>=0; index--) {
         if (string[index]==symbol) {return index;}
@@ -18,9 +12,22 @@ int search(char symbol, char* string) {
 
 int bouyer_moor(char* needle, char* haystack)
 {
-    int needlen = sizeof(needle)/sizeof(char);
+    // Составление таблицы сдвигов //
+    int need_len = sizeof(needle)/sizeof(char);
+    shiftable table[need_len];
+    table[need_len].error_index = need_len-1;
+    table[need_len].shift_index = 1;
+    // Первый проход //
+    for (int index = need_len-2; index>=0; index--) {
+        //search();
+    }
+    // Второй проход //
+    for (int index = need_len-2; index>=0; index--) {
+        //search();
+    }
+
     int head_index = 0;
-    for (int nd_char= needlen; nd_char>=0; nd_char--) {
+    for (int nd_char= need_len; nd_char>=0; nd_char--) {
         char hay = haystack[head_index+nd_char];
         char ned = needle[nd_char];
         //Первая эвристика//
